@@ -15,7 +15,7 @@ if (!process.env.EXPOSE_URL) {
 
 const bot = new ViberBot({
   authToken: process.env.BOT_ACCOUNT_TOKEN,
-  name: "Cat Vet Bot",
+  name: "HealthCare",
   avatar: "https://upload.wikimedia.org/wikipedia/commons/3/3d/Katze_weiss.png"
 });
 bot.on(BotEvents.SUBSCRIBED, response => {
@@ -26,7 +26,7 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 });
 const port = process.env.PORT || 3000;
 app.use("/viber/webhook", bot.middleware());
-app.listen(port, () => {
+app.listen(9002, () => {
   console.log(`Application running on port: ${port}`);
   bot.setWebhook(`${process.env.EXPOSE_URL}/viber/webhook`).catch(error => {
     console.log('Can not set webhook on following server. Is it running?');
